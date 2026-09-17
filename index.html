@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Teste Científico Ultra Secreto</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #111, #1c1c1c);
+            color: white;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+            margin: 0;
+
+            text-align: center;
+        }
+
+        .caixa {
+            background-color: #222;
+
+            width: 550px;
+            max-width: 90%;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 0 30px #00ff88;
+        }
+
+        h1 {
+            color: #00ff88;
+        }
+
+        h2 {
+            color: #ffd000;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        button {
+            padding: 12px 20px;
+
+            margin: 8px;
+
+            border: none;
+            border-radius: 10px;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            background-color: #00ff88;
+            color: #111;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            background-color: #00cc6a;
+        }
+
+        .vermelho {
+            background-color: red;
+            color: white;
+        }
+
+        .azul {
+            background-color: #00aaff;
+            color: white;
+        }
+
+        .amarelo {
+            background-color: #ffd000;
+            color: black;
+        }
+
+        #mensagem {
+            margin-top: 20px;
+
+            font-size: 20px;
+
+            min-height: 50px;
+        }
+
+        #barra {
+            width: 100%;
+            height: 25px;
+
+            background-color: #444;
+
+            border-radius: 20px;
+
+            margin-top: 20px;
+
+            overflow: hidden;
+
+            display: none;
+        }
+
+        #progresso {
+            width: 0%;
+            height: 100%;
+
+            background-color: #00ff88;
+
+            transition: width 0.4s;
+        }
+
+       
+        #botaoFuja {
+            position: relative;
+            transition: none;
+        }
+
+        .escondido {
+            display: none;
+        }
+
+        .emoji {
+            font-size: 60px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #555;
+            margin: 25px 0;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="caixa">
+
+    <h1>🧠 TESTE CIENTÍFICO ULTRA SECRETO</h1>
+
+    <p>
+        Este teste foi desenvolvido utilizando
+        tecnologia extremamente avançada.
+    </p>
+
+    <p>
+        Responda tudo com sinceridade.
+    </p>
+
+
+  
+
+    <div id="etapa1">
+
+        <h2>1 - Você se considera inteligente?</h2>
+
+        <button onclick="resposta1('sim')">
+            Sim 😎
+        </button>
+
+        <button onclick="resposta1('nao')">
+            Não 😔
+        </button>
+
+        <button onclick="resposta1('depende')">
+            Depende 🤔
+        </button>
+
+    </div>
+
+
+
+
+    <div id="etapa2" class="escondido">
+
+        <h2>2 - Escolha com sabedoria.</h2>
+
+        <p>
+            Qual botão você acha que é o correto?
+        </p>
+
+        <button class="azul" onclick="botaoErrado()">
+            AZUL
+        </button>
+
+        <button class="vermelho" onclick="botaoErrado()">
+            VERMELHO
+        </button>
+
+        <button class="amarelo" onclick="botaoErrado()">
+            AMARELO
+        </button>
+
+        <button onclick="botaoCerto()">
+            VERDE
+        </button>
+
+    </div>
+
+
+   
+
+    <div id="etapa3" class="escondido">
+
+        <h2>3 - Teste de reflexo</h2>
+
+        <p>
+            Parece simples.
+        </p>
+
+        <p>
+            Clique no botão abaixo.
+        </p>
+
+        <button
+            id="botaoFuja"
+            class="vermelho">
+
+            CLIQUE EM MIM
+
+        </button>
+
+    </div>
+
+
+    
+
+    <div id="etapa4" class="escondido">
+
+        <h2>4 - Pergunta muito importante</h2>
+
+        <p>
+            Você realmente quer descobrir o resultado?
+        </p>
+
+        <button onclick="resultado()">
+            SIM 😎
+        </button>
+
+        <button
+            id="botaoNao"
+            class="vermelho"
+            onclick="naoQuerResultado()">
+
+            NÃO
+
+        </button>
+
+    </div>
+
+
+   
+    <div id="resultado" class="escondido">
+
+        <h2>
+            ANALISANDO SEU CÉREBRO...
+        </h2>
+
+        <div id="barra">
+
+            <div id="progresso"></div>
+
+        </div>
+
+        <div id="resultadoFinal"></div>
+
+    </div>
+
+
+
+
+    <div id="mensagem"></div>
+
+</div>
+
+
+
+<script>
+
+    
+
+    const mensagem =
+        document.getElementById("mensagem");
+
+
+    
+    function resposta1(resposta) {
+
+        if (resposta == "sim") {
+
+            mensagem.innerHTML =
+                "😏 Interessante... vamos verificar essa informação.";
+
+        }
+
+
+        if (resposta == "nao") {
+
+            mensagem.innerHTML =
+                "😂 Pelo menos você foi sincero.";
+
+        }
+
+
+        if (resposta == "depende") {
+
+            mensagem.innerHTML =
+                "🤨 Resposta típica de quem está tentando escapar da pergunta.";
+
+        }
+
+
+       
+
+        setTimeout(function() {
+
+            document.getElementById("etapa1").style.display =
+                "none";
+
+            document.getElementById("etapa2").style.display =
+                "block";
+
+            mensagem.innerHTML = "";
+
+        }, 1500);
+
+    }
+
+
+
+  
+    let erros = 0;
+
+
+    function botaoErrado() {
+
+        erros++;
+
+
+        const mensagens = [
+
+            "❌ Errado.",
+
+            "😂 Também não.",
+
+            "🤡 Continua tentando.",
+
+            "💀 Meu Deus...",
+
+            "🤨 Talvez as cores tenham algum significado...",
+
+            "👀 Você está escolhendo no aleatório, né?",
+
+            "🧠 Pense bastante... ou talvez nem tanto.",
+
+            "Talvez o botão VERDE tenha alguma pista..."
+
+        ];
+
+
+        const numero =
+            Math.floor(Math.random() * mensagens.length);
+
+
+        mensagem.innerHTML =
+            mensagens[numero];
+
+    }
+
+
+    function botaoCerto() {
+
+        mensagem.innerHTML =
+            "✅ PARABÉNS! Você conseguiu identificar a cor verde.";
+
+
+        setTimeout(function() {
+
+            document.getElementById("etapa2").style.display =
+                "none";
+
+            document.getElementById("etapa3").style.display =
+                "block";
+
+            mensagem.innerHTML = "";
+
+        }, 1500);
+
+    }
+
+
+
+
+    const botaoFuja =
+        document.getElementById("botaoFuja");
+
+
+    let fugas = 0;
+
+
+ 
+
+    botaoFuja.addEventListener(
+        "mouseenter",
+
+        function() {
+
+
+
+            if (fugas < 12) {
+
+ 
+
+                const x =
+                    Math.random() * 450 - 225;
+
+                const y =
+                    Math.random() * 300 - 150;
+
+
+
+                botaoFuja.style.transform =
+                    `translate(${x}px, ${y}px)`;
+
+
+                fugas++;
+
+
+                const frases = [
+
+                    "😂 QUASE!",
+
+                    "💨 LENTO DEMAIS!",
+
+                    "🏃 CORRE!",
+
+                    "😎 ERROU!",
+
+                    "🤡 TENTA DE NOVO!",
+
+                    "👀 EU VI ISSO!",
+
+                    "⚡ MUITO DEVAGAR!",
+
+                    "😂 NÃO VAI SER TÃO FÁCIL!",
+
+                    "💀 PASSOU LONGE!",
+
+                    "🧠 USE SEUS REFLEXOS!"
+
+                ];
+
+
+                const numero =
+                    Math.floor(
+                        Math.random() * frases.length
+                    );
+
+
+                mensagem.innerHTML =
+                    frases[numero];
+
+            }
+
+            else {
+
+
+                botaoFuja.style.transform =
+                    "translate(0px, 0px)";
+
+
+                mensagem.innerHTML =
+                    "😈 Tá bom... agora eu deixo.";
+
+            }
+
+        }
+    );
+
+
+
+    botaoFuja.addEventListener(
+        "click",
+
+        function() {
+
+            mensagem.innerHTML =
+                "😱 IMPOSSÍVEL! VOCÊ CONSEGUIU!";
+
+
+            setTimeout(function() {
+
+                document.getElementById("etapa3").style.display =
+                    "none";
+
+                document.getElementById("etapa4").style.display =
+                    "block";
+
+                mensagem.innerHTML = "";
+
+            }, 1500);
+
+        }
+    );
+
+
+    let quantidadeNao = 0;
+
+
+    function naoQuerResultado() {
+
+        quantidadeNao++;
+
+
+        const botaoNao =
+            document.getElementById("botaoNao");
+
+
+
+        if (quantidadeNao == 1) {
+
+            mensagem.innerHTML =
+                "🤨 Tem certeza?";
+
+            botaoNao.innerHTML =
+                "SIM... quer dizer, NÃO";
+
+        }
+
+
+        else if (quantidadeNao == 2) {
+
+            mensagem.innerHTML =
+                "😂 Você chegou até aqui e agora não quer saber?";
+
+            botaoNao.innerHTML =
+                "NÃO MESMO";
+
+        }
+
+
+
+
+        else if (quantidadeNao == 3) {
+
+            mensagem.innerHTML =
+                "🤔 Talvez você não tenha entendido a pergunta.";
+
+            botaoNao.innerHTML =
+                "CONTINUO NÃO";
+
+        }
+
+
+
+        else if (quantidadeNao == 4) {
+
+            mensagem.innerHTML =
+                "⚠️ Sistema detectou resistência do usuário.";
+
+            botaoNao.innerHTML =
+                "NÃO!!!";
+
+        }
+
+
+
+        else if (quantidadeNao == 5) {
+
+            mensagem.innerHTML =
+                "🚨 ERRO: resposta NÃO não reconhecida.";
+
+            botaoNao.innerHTML =
+                "TENTAR NÃO NOVAMENTE";
+
+        }
+
+
+
+
+        else if (quantidadeNao == 6) {
+
+            mensagem.innerHTML =
+                "🤖 Processando sua resposta...";
+
+            botaoNao.innerHTML =
+                "PROCESSANDO...";
+
+        }
+
+
+
+        else if (quantidadeNao == 7) {
+
+            mensagem.innerHTML =
+                "❌ Falha ao processar NÃO.";
+
+            botaoNao.innerHTML =
+                "NÃO";
+
+        }
+
+
+
+        else {
+
+            const frasesLoop = [
+
+                "🔁 Você entrou oficialmente no LOOP DO NÃO.",
+
+                "😂 Ainda tentando?",
+
+                "♾️ Este botão não leva a lugar nenhum.",
+
+                "🤡 Talvez clicar novamente resolva...",
+
+                "💀 Spoiler: não vai resolver.",
+
+                "🔄 Voltamos para o começo.",
+
+                "🧠 Seu cérebro: 'talvez dessa vez funcione'.",
+
+                "😂 Você realmente está insistindo nisso?",
+
+                "♾️ Bem-vindo ao infinito.",
+
+                "🤖 Sistema: usuário insiste no NÃO.",
+
+                "👀 Você sabe que existe um botão SIM ali, né?",
+
+                "🚪 Saída não encontrada.",
+
+                "🔁 Carregando saída do loop... 0%",
+
+                "💻 ERRO 404: saída não encontrada.",
+
+                "😂 Eu posso fazer isso o dia inteiro.",
+
+                "🤨 Você também pode aparentemente.",
+
+                "♾️ NÃO → NÃO → NÃO → NÃO → NÃO...",
+
+                "🚨 Sistema recomenda fortemente o botão SIM."
+
+            ];
+
+
+            const numero =
+                Math.floor(
+                    Math.random() * frasesLoop.length
+                );
+
+
+            mensagem.innerHTML =
+                frasesLoop[numero];
+
+
+            const textosBotao = [
+
+                "NÃO",
+
+                "NÃO DE NOVO",
+
+                "TENTAR NOVAMENTE",
+
+                "AGORA VAI",
+
+                "CONFIA",
+
+                "CLICA AQUI",
+
+                "SAIR DO LOOP",
+
+                "NÃO",
+
+                "SOCORRO",
+
+                "♾️",
+
+                "ÚLTIMA TENTATIVA",
+
+                "DESISTIR",
+
+                "TENTAR SAIR",
+
+                "EU QUERO SAIR",
+
+                "RESETAR",
+
+                "CLIQUE PARA SAIR"
+
+            ];
+
+
+            const botaoAleatorio =
+                Math.floor(
+                    Math.random() * textosBotao.length
+                );
+
+
+            botaoNao.innerHTML =
+                textosBotao[botaoAleatorio];
+
+        }
+
+    }
+
+    function resultado() {
+
+
+
+        document.getElementById("etapa4").style.display =
+            "none";
+
+
+
+
+        document.getElementById("resultado").style.display =
+            "block";
+
+        document.getElementById("barra").style.display =
+            "block";
+
+
+        mensagem.innerHTML = "";
+
+
+        let progresso = 0;
+
+
+        const carregamento =
+            setInterval(function() {
+
+                progresso += 10;
+
+
+                document.getElementById("progresso").style.width =
+                    progresso + "%";
+
+                if (progresso == 20) {
+
+                    mensagem.innerHTML =
+                        "🔎 Procurando sinais de inteligência...";
+
+                }
+
+
+                if (progresso == 40) {
+
+                    mensagem.innerHTML =
+                        "🧠 Escaneando cérebro...";
+
+                }
+
+
+                if (progresso == 60) {
+
+                    mensagem.innerHTML =
+                        "🤨 Analisando decisões questionáveis...";
+
+                }
+
+
+                if (progresso == 80) {
+
+                    mensagem.innerHTML =
+                        "📊 Comparando resultados com um macaco digitando aleatoriamente...";
+
+                }
+
+
+                if (progresso == 90) {
+
+                    mensagem.innerHTML =
+                        "⚠️ Resultado preocupante encontrado...";
+
+                }
+
+                if (progresso >= 100) {
+
+                    clearInterval(carregamento);
+
+
+                    setTimeout(function() {
+
+                        mostrarResultado();
+
+                    }, 800);
+
+                }
+
+            }, 500);
+
+    }
+
+
+
+    function mostrarResultado() {
+
+        mensagem.innerHTML = "";
+
+
+        document.getElementById("resultadoFinal").innerHTML = `
+
+            <br>
+
+            <div class="emoji">
+                🤡
+            </div>
+
+            <h1>
+                RESULTADO FINAL
+            </h1>
+
+            <p>
+                Inteligência detectada:
+            </p>
+
+            <h1>
+                7%
+            </h1>
+
+            <p>
+                Curiosidade:
+            </p>
+
+            <h1>
+                100%
+            </h1>
+
+            <p>
+                Persistência:
+            </p>
+
+            <h1>
+                999%
+            </h1>
+
+            <p>
+                Capacidade de seguir instruções:
+            </p>
+
+            <h1>
+                QUESTIONÁVEL
+            </h1>
+
+            <hr>
+
+            <p>
+                Você gastou todo esse tempo respondendo
+                perguntas de um site que claramente
+                parecia uma pegadinha.
+            </p>
+
+            <p>
+                E caso tenha ficado preso no
+                <b>LOOP DO NÃO</b>...
+            </p>
+
+            <p>
+                isso apenas tornou o resultado
+                ainda mais preciso.
+            </p>
+
+            <h2>
+                😂 PARABÉNS! 😂
+            </h2>
+
+            <button onclick="reiniciar()">
+                FAZER O TESTE NOVAMENTE
+            </button>
+
+        `;
+
+    }
+
+
+    function reiniciar() {
+
+
+        location.reload();
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
